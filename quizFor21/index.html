@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Final - Introducción a HTML</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        h1 { color: #333; }
+        .question { margin-bottom: 15px; }
+        .correct-answer { background-color: #d4edda; padding: 5px; border-radius: 5px; }
+        .incorrect-answer { color: #ff0000; }
+        .btn { padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer; }
+        .btn:hover { background-color: #0056b3; }
+        .result { font-size: 1.2em; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Examen Final: Introducción a HTML</h1>
+
+    <form id="quizForm">
+        <div class="question">
+            <p>1. ¿Qué significa HTML?</p>
+            <input type="radio" name="q1" value="correct"> HyperText Markup Language<br>
+            <input type="radio" name="q1" value="incorrect"> HighText Machine Language<br>
+            <input type="radio" name="q1" value="incorrect"> Hyperlinks and Text Markup Language<br>
+            <p class="feedback" id="feedback-q1"></p>
+        </div>
+
+        <div class="question">
+            <p>2. ¿Qué etiqueta se usa para insertar un enlace?</p>
+            <input type="radio" name="q2" value="correct"> &lt;a&gt;<br>
+            <input type="radio" name="q2" value="incorrect"> &lt;link&gt;<br>
+            <input type="radio" name="q2" value="incorrect"> &lt;href&gt;<br>
+            <p class="feedback" id="feedback-q2"></p>
+        </div>
+
+        <div class="question">
+            <p>3. ¿Qué atributo define el texto alternativo de una imagen?</p>
+            <input type="radio" name="q3" value="correct"> alt<br>
+            <input type="radio" name="q3" value="incorrect"> src<br>
+            <input type="radio" name="q3" value="incorrect"> title<br>
+            <p class="feedback" id="feedback-q3"></p>
+        </div>
+
+        <div class="question">
+            <p>4. ¿Cuál es la etiqueta para insertar una lista ordenada?</p>
+            <input type="radio" name="q4" value="correct"> &lt;ol&gt;<br>
+            <input type="radio" name="q4" value="incorrect"> &lt;ul&gt;<br>
+            <input type="radio" name="q4" value="incorrect"> &lt;li&gt;<br>
+            <p class="feedback" id="feedback-q4"></p>
+        </div>
+
+        <div class="question">
+            <p>5. ¿Qué significa el atributo 'href'?</p>
+            <input type="radio" name="q5" value="correct"> Especifica la URL del enlace<br>
+            <input type="radio" name="q5" value="incorrect"> Define el color de la fuente<br>
+            <input type="radio" name="q5" value="incorrect"> Define el tipo de imagen<br>
+            <p class="feedback" id="feedback-q5"></p>
+        </div>
+
+        <div class="question">
+            <p>6. ¿Qué etiqueta HTML se usa para insertar una imagen?</p>
+            <input type="radio" name="q6" value="correct"> &lt;img&gt;<br>
+            <input type="radio" name="q6" value="incorrect"> &lt;image&gt;<br>
+            <input type="radio" name="q6" value="incorrect"> &lt;picture&gt;<br>
+            <p class="feedback" id="feedback-q6"></p>
+        </div>
+
+        <div class="question">
+            <p>7. ¿Qué etiqueta es apropiada para texto resaltado?</p>
+            <input type="radio" name="q7" value="correct"> &lt;strong&gt;<br>
+            <input type="radio" name="q7" value="incorrect"> &lt;bold&gt;<br>
+            <input type="radio" name="q7" value="incorrect"> &lt;emphasis&gt;<br>
+            <p class="feedback" id="feedback-q7"></p>
+        </div>
+
+        <div class="question">
+            <p>8. ¿Cuál de las siguientes es una etiqueta de encabezado?</p>
+            <input type="radio" name="q8" value="correct"> &lt;h1&gt;<br>
+            <input type="radio" name="q8" value="incorrect"> &lt;header&gt;<br>
+            <input type="radio" name="q8" value="incorrect"> &lt;head&gt;<br>
+            <p class="feedback" id="feedback-q8"></p>
+        </div>
+
+        <div class="question">
+            <p>9. ¿Qué etiqueta HTML define una división o sección en la página?</p>
+            <input type="radio" name="q9" value="correct"> &lt;div&gt;<br>
+            <input type="radio" name="q9" value="incorrect"> &lt;section&gt;<br>
+            <input type="radio" name="q9" value="incorrect"> &lt;span&gt;<br>
+            <p class="feedback" id="feedback-q9"></p>
+        </div>
+
+        <div class="question">
+            <p>10. ¿Qué atributo se utiliza para identificar un elemento único en HTML?</p>
+            <input type="radio" name="q10" value="correct"> id<br>
+            <input type="radio" name="q10" value="incorrect"> class<br>
+            <input type="radio" name="q10" value="incorrect"> name<br>
+            <p class="feedback" id="feedback-q10"></p>
+        </div>
+
+        <button type="button" class="btn" onclick="checkAnswers()">Enviar Respuestas</button>
+    </form>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        const correctAnswers = {
+            q1: { answer: "HyperText Markup Language", explanation: "HTML significa HyperText Markup Language, estándar para estructurar contenido en la web." },
+            q2: { answer: "&lt;a&gt;", explanation: "La etiqueta &lt;a&gt; crea enlaces a otras páginas o recursos." },
+            q3: { answer: "alt", explanation: "El atributo 'alt' proporciona una descripción textual para accesibilidad." },
+            q4: { answer: "&lt;ol&gt;", explanation: "La etiqueta &lt;ol&gt; se usa para listas ordenadas numeradas." },
+            q5: { answer: "Especifica la URL del enlace", explanation: "'href' define la URL que apunta el enlace." },
+            q6: { answer: "&lt;img&gt;", explanation: "La etiqueta &lt;img&gt; inserta imágenes en HTML." },
+            q7: { answer: "&lt;strong&gt;", explanation: "La etiqueta &lt;strong&gt; resalta texto con importancia." },
+            q8: { answer: "&lt;h1&gt;", explanation: "&lt;h1&gt; es una etiqueta de encabezado para títulos." },
+            q9: { answer: "&lt;div&gt;", explanation: "&lt;div&gt; define una sección o contenedor en HTML." },
+            q10: { answer: "id", explanation: "El atributo 'id' identifica un elemento único en HTML." }
+        };
+
+        function checkAnswers() {
+            let score = 0;
+
+            for (const [question, info] of Object.entries(correctAnswers)) {
+                const options = document.getElementsByName(question);
+                let isCorrect = false;
+
+                options.forEach(option => {
+                    const feedbackElement = document.getElementById(`feedback-${question}`);
+                    if (option.value === "correct" && option.checked) {
+                        score++;
+                        isCorrect = true;
+                    }
+
+                    if (option.value === "correct") {
+                        option.parentNode.classList.add("correct-answer");
+                    }
+                });
+
+                const feedbackElement = document.getElementById(`feedback-${question}`);
+                if (isCorrect) {
+                    feedbackElement.textContent = "Respuesta correcta";
+                } else {
+                    feedbackElement.innerHTML = `<span class="incorrect-answer">Respuesta incorrecta.</span> La respuesta correcta es: "${info.answer}". ${info.explanation}`;
+                }
+            }
+
+            document.getElementById('result').textContent = `Obtuviste ${score} de ${Object.keys(correctAnswers).length} respuestas correctas.`;
+        }
+    </script>
+
+</body>
+</html>
